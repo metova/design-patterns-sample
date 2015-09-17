@@ -1,0 +1,1 @@
+### Rails Design Pattern Samples ###
