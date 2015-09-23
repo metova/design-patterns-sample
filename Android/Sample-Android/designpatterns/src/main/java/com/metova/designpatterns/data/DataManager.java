@@ -48,6 +48,50 @@ public class DataManager {
         return restaurantList;
     }
 
+    private void parseHotChickenJson(JSONObject parentObject) {
+
+        try {
+            JSONArray businessArray = parentObject.getJSONArray("businesses");
+
+            JSONObject restaurantObject;
+            Restaurant restaurant;
+            for (int i = 0; i < businessArray.length(); i++) {
+                restaurantObject = businessArray.getJSONObject(i);
+                restaurant = parseRestaurant(restaurantObject, i);
+
+                if (restaurant != null) {
+                    restaurantList.add(restaurant);
+                    Log.d(TAG, "Added new restaurant: " + restaurant.name);
+                }
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Restaurant parseRestaurant(JSONObject restaurantObject, long id) {
+
+        Restaurant restaurant = new Restaurant();
+
+        try {
+            restaurant.generated_id = id;
+            restaurant.id = restaurantObject.getString("id");
+            restaurant.name = restaurantObject.getString("name");
+            restaurant.imageUrl = restaurantObject.getString("image_url");
+            restaurant.phone = restaurantObject.getString("phone");
+            restaurant.url = restaurantObject.getString("url");
+            restaurant.rating = restaurantObject.getDouble("rating");
+            restaurant.reviewCount = restaurantObject.getInt("review_count");
+
+        } catch (JSONException e) {
+            Log.e(TAG, "Error parsing restaurant", e);
+            return null;
+        }
+
+        return restaurant;
+    }
+
     private JSONObject openJsonData(Context context) {
 
         InputStream is = context.getResources().openRawResource(R.raw.hot_chicken);
@@ -79,49 +123,6 @@ public class DataManager {
         }
 
         return jsonObject;
-    }
-
-    private void parseHotChickenJson(JSONObject parentObject) {
-
-        try {
-            JSONArray businessArray = parentObject.getJSONArray("businesses");
-
-            JSONObject restaurantObject;
-            Restaurant restaurant;
-            for (int i = 0; i < businessArray.length(); i++) {
-                restaurantObject = businessArray.getJSONObject(i);
-                restaurant = parseRestaurant(restaurantObject);
-
-                if (restaurant != null) {
-                    restaurantList.add(restaurant);
-                    Log.d(TAG, "Added new restaurant: " + restaurant.name);
-                }
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private Restaurant parseRestaurant(JSONObject restaurantObject) {
-
-        Restaurant restaurant = new Restaurant();
-
-        try {
-            restaurant.id = restaurantObject.getString("id");
-            restaurant.name = restaurantObject.getString("name");
-            restaurant.imageUrl = restaurantObject.getString("image_url");
-            restaurant.phone = restaurantObject.getString("phone");
-            restaurant.url = restaurantObject.getString("url");
-            restaurant.rating = restaurantObject.getDouble("rating");
-            restaurant.reviewCount = restaurantObject.getInt("review_count");
-
-        } catch (JSONException e) {
-            Log.e(TAG, "Error parsing restaurant", e);
-            return null;
-        }
-
-        return restaurant;
     }
 
 }
