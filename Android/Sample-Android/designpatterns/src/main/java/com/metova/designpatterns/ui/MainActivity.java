@@ -1,4 +1,4 @@
-package com.metova.designpatterns;
+package com.metova.designpatterns.ui;
 
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -9,11 +9,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.metova.designpatterns.R;
 import com.metova.designpatterns.data.DataManager;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    private ListView mListView;
+
+    private HotChickenListAdapter mListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +31,17 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        mListView = (ListView) findViewById(R.id.hot_chicken_list_view);
+
+        loadList();
+    }
+
+    public void loadList(){
+
         DataManager.getInstance().initialize(this);
 
-        TextView testText = (TextView) findViewById(R.id.restaurant_size_text);
-        testText.setText("There are " + DataManager.getInstance().getRestaurantList().size()
-                + " hot chicken restaurants in Nashville");
+        mListAdapter = new HotChickenListAdapter(DataManager.getInstance().getRestaurantList());
+        mListView.setAdapter(mListAdapter);
     }
 
 }
