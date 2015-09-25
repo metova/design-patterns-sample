@@ -17,6 +17,8 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class DataManager {
 
@@ -64,6 +66,13 @@ public class DataManager {
                     Log.d(TAG, "Added new restaurant: " + restaurant.name);
                 }
             }
+
+            Collections.sort(restaurantList, new Comparator<Restaurant>() {
+                @Override
+                public int compare(Restaurant lhs, Restaurant rhs) {
+                    return  lhs.name.compareTo(rhs.name);
+                }
+            });
 
         } catch (JSONException e) {
             e.printStackTrace();
