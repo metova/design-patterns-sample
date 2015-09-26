@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         DataManager.getInstance().initialize(this);
 
-        mListAdapter = new HotChickenListAdapter(DataManager.getInstance().getRestaurantList());
+        mListAdapter = new HotChickenListAdapter(DataManager.getInstance().getRestaurantList(), this);
         mListView.setAdapter(mListAdapter);
     }
 

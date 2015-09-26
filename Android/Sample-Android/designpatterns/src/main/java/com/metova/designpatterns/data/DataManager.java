@@ -91,7 +91,14 @@ public class DataManager {
             restaurant.phone = restaurantObject.getString("phone");
             restaurant.url = restaurantObject.getString("url");
             restaurant.rating = restaurantObject.getDouble("rating");
+            restaurant.ratingUrl = restaurantObject.getString("rating_img_url");
             restaurant.reviewCount = restaurantObject.getInt("review_count");
+
+            JSONObject locationObject = restaurantObject.getJSONObject("location");
+            restaurant.city = locationObject.getString("city");
+            restaurant.address = locationObject.getString("address");
+            restaurant.zipCode = locationObject.getString("postal_code");
+            restaurant.state = locationObject.getString("state_code");
 
         } catch (JSONException e) {
             Log.e(TAG, "Error parsing restaurant", e);

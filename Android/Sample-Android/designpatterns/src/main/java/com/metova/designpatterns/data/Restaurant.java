@@ -8,7 +8,12 @@ public class Restaurant {
     public String phone;
     public String url;
     public String imageUrl;
+    public String ratingUrl;
     public double rating;
     public int reviewCount;
+    public String address;
+    public String city;
+    public String state;
+    public String zipCode;
 
 }
