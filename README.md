@@ -6,6 +6,7 @@ If you are a web or mobile developer you may not be aware that you use some of t
 
 #### Resources ####
 While this repository is still in progress here are links to the planning doc and the slides for the presention.
+
 - [Google Doc](https://docs.google.com/document/d/189NgasryPDxMfjgtemgyYicn0yXzqSqCw3IcZGuEy-g/edit)
 - [Google Slides](https://docs.google.com/presentation/d/123Td1gM7_Vcjh_iPAtU6W75_c3dRzvzoYmqzDlgkepY/edit?userstoinvite=mahyar.varasteh@metova.com&ts=5605654a&actionButton=1#slide=id.p)
 
@@ -26,11 +27,45 @@ Reference: [Singleton Pattern](https://sourcemaking.com/design_patterns/singleto
 
 #### Examples ####
 
-- [DataManager - Android](https://github.com/metova/design-patterns-sample/blob/master/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/data/DataManager.java)
+[DataManager - Android](https://github.com/metova/design-patterns-sample/blob/master/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/data/DataManager.java)
 
 ## Factory ##
 
+#### Intent ####
+>- Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
+- Defining a "virtual" constructor.
+- The new operator considered harmful.
+
+#### Problem ####
+>A framework needs to standardize the architectural model for a range of applications, but allow for individual applications to define their own domain objects and provide for their instantiation.
+
+#### Examples ####
+[RestaurantFactory](https://github.com/metova/design-patterns-sample/blob/feature/android/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/data/RestaurantFactory.java)
+
 ## Adapter ##
-- [ListAdapter - Android](https://github.com/metova/design-patterns-sample/blob/master/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/ui/HotChickenListAdapter.java)
+Reference: [Adapter Pattern](https://sourcemaking.com/design_patterns/adapter)
+
+#### Intent ####
+>- Convert the interface of a class into another interface clients expect. 
+- Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
+- Wrap an existing class with a new interface.
+Impedance match an old component to a new system
+
+#### Problem ####
+>An "off the shelf" component offers compelling functionality that you would like to reuse, but its "view of the world" is not compatible with the philosophy and architecture of the system currently being developed.
+
+#### Examples ####
+- [ListAdapter - Android](https://github.com/metova/design-patterns-sample/blob/feature/android/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/ui/ListAdapter.java)
 
 ## Flyweight ##
+Reference: [Flyweight Pattern](https://sourcemaking.com/design_patterns/flyweight)
+
+#### Intent ####
+>- Use sharing to support large numbers of fine-grained objects efficiently.
+- The Motif GUI strategy of replacing heavy-weight widgets with light-weight gadgets.
+
+#### Problem ####
+>Designing objects down to the lowest levels of system "granularity" provides optimal flexibility, but can be unacceptably expensive in terms of performance and memory usage.
+
+#### Examples ####
+[ViewHolder - Android](https://github.com/metova/design-patterns-sample/blob/feature/android/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/ui/ViewHolder.java#L10)
