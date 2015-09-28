@@ -44,6 +44,11 @@ public class ListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        /* FLYWEIGHT PATTERN */
+        // Determine if we can need to create a new view or if the list view is recreated a view that
+        // it has already received from a getView call. If convertView is null we know that we should
+        // create a new view, otherwise we know that getView() has already created the view and we
+        // can use our Flyweight ViewHolder object that is cached for us in the tag.
         Restaurant restaurant = getItem(position);
         ViewHolder holder;
         if (convertView == null) {
