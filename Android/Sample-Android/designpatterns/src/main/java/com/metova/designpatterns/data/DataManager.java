@@ -17,6 +17,8 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class DataManager {
 
@@ -65,6 +67,13 @@ public class DataManager {
                 }
             }
 
+            Collections.sort(restaurantList, new Comparator<Restaurant>() {
+                @Override
+                public int compare(Restaurant lhs, Restaurant rhs) {
+                    return  lhs.name.compareTo(rhs.name);
+                }
+            });
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -82,7 +91,14 @@ public class DataManager {
             restaurant.phone = restaurantObject.getString("phone");
             restaurant.url = restaurantObject.getString("url");
             restaurant.rating = restaurantObject.getDouble("rating");
+            restaurant.ratingUrl = restaurantObject.getString("rating_img_url");
             restaurant.reviewCount = restaurantObject.getInt("review_count");
+
+            JSONObject locationObject = restaurantObject.getJSONObject("location");
+            restaurant.city = locationObject.getString("city");
+            restaurant.address = locationObject.getString("address");
+            restaurant.zipCode = locationObject.getString("postal_code");
+            restaurant.state = locationObject.getString("state_code");
 
         } catch (JSONException e) {
             Log.e(TAG, "Error parsing restaurant", e);
