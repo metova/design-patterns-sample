@@ -19,6 +19,7 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Enumeration;
 
 public class DataManager {
 
@@ -27,6 +28,8 @@ public class DataManager {
     private static DataManager dataManager;
 
     private ArrayList<Restaurant> restaurantList;
+
+
 
     public static DataManager getInstance() {
 
@@ -41,8 +44,10 @@ public class DataManager {
 
         restaurantList = new ArrayList<>();
 
-        JSONObject object = openJsonData(context);
-        parseHotChickenJson(object);
+        JSONObject object = openJsonData(context, R.raw.hot_chicken);
+        parseJson(object, RestaurantFactory.RestaurantType.HOT_CHICKEN);
+        object = openJsonData(context, R.raw.burger);
+        parseJson(object, RestaurantFactory.RestaurantType.BURGER);
 
     }
 
@@ -50,7 +55,7 @@ public class DataManager {
         return restaurantList;
     }
 
-    private void parseHotChickenJson(JSONObject parentObject) {
+    private void parseJson(JSONObject parentObject, RestaurantFactory.RestaurantType type) {
 
         try {
             JSONArray businessArray = parentObject.getJSONArray("businesses");
@@ -59,18 +64,18 @@ public class DataManager {
             Restaurant restaurant;
             for (int i = 0; i < businessArray.length(); i++) {
                 restaurantObject = businessArray.getJSONObject(i);
-                restaurant = parseRestaurant(restaurantObject, i);
+                restaurant = parseRestaurant(restaurantObject, i, type);
 
                 if (restaurant != null) {
                     restaurantList.add(restaurant);
-                    Log.d(TAG, "Added new restaurant: " + restaurant.name);
+                    Log.d(TAG, "Added new restaurant: " + restaurant.getName());
                 }
             }
 
             Collections.sort(restaurantList, new Comparator<Restaurant>() {
                 @Override
                 public int compare(Restaurant lhs, Restaurant rhs) {
-                    return  lhs.name.compareTo(rhs.name);
+                    return  lhs.getName().compareTo(rhs.getName());
                 }
             });
 
@@ -79,38 +84,40 @@ public class DataManager {
         }
     }
 
-    private Restaurant parseRestaurant(JSONObject restaurantObject, long id) {
+    private Restaurant parseRestaurant(JSONObject restaurantObject, long id, RestaurantFactory.RestaurantType type) {
 
-        Restaurant restaurant = new Restaurant();
+        Restaurant restaurant = RestaurantFactory.getRestaurant(type);
 
-        try {
-            restaurant.generated_id = id;
-            restaurant.id = restaurantObject.getString("id");
-            restaurant.name = restaurantObject.getString("name");
-            restaurant.imageUrl = restaurantObject.getString("image_url");
-            restaurant.phone = restaurantObject.getString("phone");
-            restaurant.url = restaurantObject.getString("url");
-            restaurant.rating = restaurantObject.getDouble("rating");
-            restaurant.ratingUrl = restaurantObject.getString("rating_img_url");
-            restaurant.reviewCount = restaurantObject.getInt("review_count");
+        if (restaurant != null) {
+            try {
+                restaurant.setGenerated_id(id);
+                restaurant.setId(restaurantObject.getString("id"));
+                restaurant.setName(restaurantObject.getString("name"));
+                restaurant.setImageUrl(restaurantObject.getString("image_url"));
+                restaurant.setPhone(restaurantObject.getString("phone"));
+                restaurant.setUrl(restaurantObject.getString("url"));
+                restaurant.setRating(restaurantObject.getDouble("rating"));
+                restaurant.setRatingUrl(restaurantObject.getString("rating_img_url"));
+                restaurant.setReviewCount(restaurantObject.getInt("review_count"));
 
-            JSONObject locationObject = restaurantObject.getJSONObject("location");
-            restaurant.city = locationObject.getString("city");
-            restaurant.address = locationObject.getString("address");
-            restaurant.zipCode = locationObject.getString("postal_code");
-            restaurant.state = locationObject.getString("state_code");
+                JSONObject locationObject = restaurantObject.getJSONObject("location");
+                restaurant.setCity(locationObject.getString("city"));
+                restaurant.setAddress(locationObject.getString("address"));
+                restaurant.setZipCode(locationObject.getString("postal_code"));
+                restaurant.setState(locationObject.getString("state_code"));
 
-        } catch (JSONException e) {
-            Log.e(TAG, "Error parsing restaurant", e);
-            return null;
+            } catch (JSONException e) {
+                Log.e(TAG, "Error parsing restaurant", e);
+                return null;
+            }
         }
 
         return restaurant;
     }
 
-    private JSONObject openJsonData(Context context) {
+    private JSONObject openJsonData(Context context, int resourceId) {
 
-        InputStream is = context.getResources().openRawResource(R.raw.hot_chicken);
+        InputStream is = context.getResources().openRawResource(resourceId);
         Writer writer = new StringWriter();
         char[] buffer = new char[1024];
 
