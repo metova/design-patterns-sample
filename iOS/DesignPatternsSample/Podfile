@@ -1,0 +1,21 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '8.0'
+
+inhibit_all_warnings!
+
+workspace 'DesignPatternsSample'
+xcodeproj 'DesignPatternsSample'
+
+link_with 'DesignPatternsSample', 'Tests', 'UITests'
+
+target 'Tests', :exclusive => true do
+    pod 'OCMock'
+end
+
+pod 'CocoaLumberjack'
+pod 'Flannel'
+pod 'AFNetworking'
+pod 'Reachability'
+pod 'ThunderCats', :git => 'https://github.com/metova/ThunderCats.git'
+pod 'SVProgressHUD'

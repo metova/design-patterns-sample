@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wbL-i6-rPd">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="tgx-jb-0z7">
+            <objects>
+                <navigationController id="wbL-i6-rPd" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iSK-LL-33n">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="KIT-gf-s05" kind="relationship" relationship="rootViewController" id="lfK-P3-kY0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qQS-2M-9K0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1167" y="594"/>
+        </scene>
+        <!--Restaurant List View Controller-->
+        <scene sceneID="YDm-Hc-36V">
+            <objects>
+                <viewController storyboardIdentifier="RestaurantListViewController" id="KIT-gf-s05" customClass="RestaurantListViewController" customModule="DesignPatternsSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="is7-5z-UyJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="iOy-aD-PhQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9pO-sp-64v">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qkr-fp-Zsh">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="KIT-gf-s05" id="5n3-zq-gNT"/>
+                                    <outlet property="delegate" destination="KIT-gf-s05" id="kpG-4s-qZb"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Qkr-fp-Zsh" secondAttribute="bottom" id="OWU-7J-d65"/>
+                            <constraint firstItem="Qkr-fp-Zsh" firstAttribute="top" secondItem="9pO-sp-64v" secondAttribute="topMargin" id="SAL-hK-Xim"/>
+                            <constraint firstAttribute="trailing" secondItem="Qkr-fp-Zsh" secondAttribute="trailing" id="Va9-fh-yTM"/>
+                            <constraint firstItem="Qkr-fp-Zsh" firstAttribute="leading" secondItem="9pO-sp-64v" secondAttribute="leading" id="gdW-gv-E3y"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="sw4-LJ-4Vg"/>
+                    <connections>
+                        <outlet property="tableView" destination="Qkr-fp-Zsh" id="o3F-6w-RkA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T8s-G4-R4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-498" y="594"/>
+        </scene>
+    </scenes>
+</document>
