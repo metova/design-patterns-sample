@@ -7,7 +7,7 @@
 /captures
 
 # IntelliJ files
-.idea
+/.idea
 *.iml
 
 
