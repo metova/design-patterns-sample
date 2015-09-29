@@ -27,8 +27,8 @@ Reference: [Singleton Pattern](https://sourcemaking.com/design_patterns/singleto
 
 #### Examples ####
 
-[DataManager - Android](https://github.com/metova/design-patterns-sample/blob/master/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/data/DataManager.java)
-[WebService - iOS](https://github.com/metova/design-patterns-sample/blob/master/iOS/DesignPatternsSample/DesignPatternsSample/WebService.swift)
+- [DataManager - Android](https://github.com/metova/design-patterns-sample/blob/master/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/data/DataManager.java)
+- [WebService - iOS](https://github.com/metova/design-patterns-sample/blob/master/iOS/DesignPatternsSample/DesignPatternsSample/WebService.swift)
 
 ## Factory ##
 
