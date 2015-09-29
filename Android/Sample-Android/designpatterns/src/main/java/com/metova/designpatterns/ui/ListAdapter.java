@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * allows different views to be displayed in a list even though they may have incompatible interfaces.
  * The ListView can display any data provided that is wrapped in a ListAdapter.
  * <p/>
- * INFO: The overriden methods allow the adapter to interact with the underlying data. By calling
+ * INFO: The overridden methods allow the adapter to interact with the underlying data. By calling
  * getCount(), the ListAdapter knows how many items it needs to display. The getView() is then called
  * getCount() number of times. For each call to the getView() method, getItem() is called and the ViewHolder
  * is inflated in that particle view in the ListAdapter. The getId() is used to keep track of the items

@@ -10,7 +10,7 @@ import android.widget.TextView;
  * FLYWEIGHT PATTERN
  * <p/>
  * PROBLEM: findViewById() is an expensive method because it traverses through the view hierarchy
- * to find a view with a matching id. If called frequently it can effect ListView performance.
+ * to find a view with a matching id. If called frequently it can affect ListView performance.
  * <p/>
  * INTENT: Create a ViewHolder class to act as a Flyweight object. Only create one instance
  * and then cache it for future use so any unneeded findViewById() calls will not be invoked.
