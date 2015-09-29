@@ -21,18 +21,34 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
 
+/**
+ * SINGLETON PATTERN
+ * <p/>
+ * PROBLEM: Application needs one, and only one, instance of an object. Additionally, lazy initialization and global access are necessary.
+ * <p/>
+ * INTENT: Ensure a class has only one instance, and provide a global point of access to it.
+ * Encapsulated "just-in-time initialization" or "initialization on first use"
+ * <p/>
+ * INFO: The static getInstance() method provides any class with the same instance of this class.
+ * The the first time getInstance() is called, a new DataManager object is instantiated.
+ * Future calls to getInstance() will return the same instance of the DataManager object.
+ *
+ */
+
 public class DataManager {
 
     private static final String TAG = DataManager.class.getSimpleName();
 
+    /** Check list item 1: define a private static attribute in the singleton class */
     private static DataManager dataManager;
 
     private ArrayList<Restaurant> restaurantList;
 
-
-
+    /** Check list item 2: define a public static accessor function in the class */
     public static DataManager getInstance() {
 
+    /** Check list item 3: do "lazy instantiation" in the accessor function
+    * Check list item 4: private/protected constructor */
         if (dataManager == null) {
             dataManager = new DataManager();
         }
