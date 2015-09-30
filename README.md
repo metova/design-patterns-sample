@@ -82,7 +82,7 @@ Reference: [Flyweight Pattern](https://sourcemaking.com/design_patterns/flyweigh
 >A large monolithic design does not scale well as new graphing or monitoring requirements are levied.
 
 #### Examples ####
-[NSNotificationCenter - iOS]()
+[NSNotificationCenter - iOS](https://github.com/metova/design-patterns-sample/blob/master/iOS/DesignPatternsSample/DesignPatternsSample/RestaurantListViewController.swift#L35)
 
 ## Delegation ##
 Reference: [Delegation Pattern](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/Delegation.html)
