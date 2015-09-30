@@ -10,7 +10,8 @@
         <scene sceneID="tgx-jb-0z7">
             <objects>
                 <navigationController id="wbL-i6-rPd" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iSK-LL-33n">
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="iSK-LL-33n">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -31,28 +32,39 @@
                         <viewControllerLayoutGuide type="bottom" id="iOy-aD-PhQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9pO-sp-64v">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qkr-fp-Zsh">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="KIT-gf-s05" id="5n3-zq-gNT"/>
                                     <outlet property="delegate" destination="KIT-gf-s05" id="kpG-4s-qZb"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="gH8-B7-nrs">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="KIT-gf-s05" id="dWb-He-pKu"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="gH8-B7-nrs" firstAttribute="top" secondItem="is7-5z-UyJ" secondAttribute="bottom" id="99I-en-QUA"/>
                             <constraint firstAttribute="bottom" secondItem="Qkr-fp-Zsh" secondAttribute="bottom" id="OWU-7J-d65"/>
                             <constraint firstItem="Qkr-fp-Zsh" firstAttribute="top" secondItem="9pO-sp-64v" secondAttribute="topMargin" id="SAL-hK-Xim"/>
                             <constraint firstAttribute="trailing" secondItem="Qkr-fp-Zsh" secondAttribute="trailing" id="Va9-fh-yTM"/>
+                            <constraint firstAttribute="trailing" secondItem="gH8-B7-nrs" secondAttribute="trailing" id="We7-Zd-vBu"/>
                             <constraint firstItem="Qkr-fp-Zsh" firstAttribute="leading" secondItem="9pO-sp-64v" secondAttribute="leading" id="gdW-gv-E3y"/>
+                            <constraint firstItem="gH8-B7-nrs" firstAttribute="leading" secondItem="9pO-sp-64v" secondAttribute="leading" id="jPF-jo-oEQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sw4-LJ-4Vg"/>
                     <connections>
+                        <outlet property="searchBar" destination="gH8-B7-nrs" id="dm6-mZ-LVs"/>
                         <outlet property="tableView" destination="Qkr-fp-Zsh" id="o3F-6w-RkA"/>
                     </connections>
                 </viewController>
