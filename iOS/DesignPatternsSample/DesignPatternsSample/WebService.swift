@@ -16,7 +16,7 @@ Check list from https://sourcemaking.com/design_patterns/singleton
 1. Define a private static attribute in the "single instance" class.
 2. Define a public static accessor function in the class.
 
-    These two steps are archieved in Swift using a single static let constant for "sharedInstance". It has the default access level of "internal" which makes it available to any class in the module. If we were writing a framework, we would want to declare sharedInstance as public as well as the ModelParser class itself.
+    These two steps are achieved in Swift using a single static `let` constant for "sharedInstance". It has the default access level of "internal" which makes it available to any class in the module. If we were writing a framework, we would want to declare sharedInstance as public as well as the ModelParser class itself.
 
 
 3. Do "lazy initialization" (creation on first use) in the accessor function.
