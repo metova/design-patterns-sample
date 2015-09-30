@@ -27,7 +27,8 @@ Reference: [Singleton Pattern](https://sourcemaking.com/design_patterns/singleto
 
 #### Examples ####
 
-[DataManager - Android](https://github.com/metova/design-patterns-sample/blob/master/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/data/DataManager.java)
+- [DataManager - Android](https://github.com/metova/design-patterns-sample/blob/master/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/data/DataManager.java)
+- [WebService - iOS](https://github.com/metova/design-patterns-sample/blob/master/iOS/DesignPatternsSample/DesignPatternsSample/WebService.swift)
 
 ## Factory ##
 
@@ -55,7 +56,7 @@ Impedance match an old component to a new system
 >An "off the shelf" component offers compelling functionality that you would like to reuse, but its "view of the world" is not compatible with the philosophy and architecture of the system currently being developed.
 
 #### Examples ####
-- [ListAdapter - Android](https://github.com/metova/design-patterns-sample/blob/feature/android/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/ui/ListAdapter.java)
+- [ListAdapter - Android](https://github.com/metova/design-patterns-sample/blob/master/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/ui/ListAdapter.java)
 
 ## Flyweight ##
 Reference: [Flyweight Pattern](https://sourcemaking.com/design_patterns/flyweight)
@@ -68,4 +69,4 @@ Reference: [Flyweight Pattern](https://sourcemaking.com/design_patterns/flyweigh
 >Designing objects down to the lowest levels of system "granularity" provides optimal flexibility, but can be unacceptably expensive in terms of performance and memory usage.
 
 #### Examples ####
-[ViewHolder - Android](https://github.com/metova/design-patterns-sample/blob/feature/android/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/ui/ViewHolder.java#L10)
+[ViewHolder - Android](https://github.com/metova/design-patterns-sample/blob/master/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/ui/ViewHolder.java#L10)
