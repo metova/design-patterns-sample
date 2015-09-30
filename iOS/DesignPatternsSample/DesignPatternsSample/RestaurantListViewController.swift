@@ -32,7 +32,7 @@ class RestaurantListViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     
-    // Pattern Example
+    // Pattern Example: Observer
     /*
     
     The iOS SDK includes a standard implementation of the observer pattern. It's a basic publish/subscribe system called NSNotificationCenter. 
