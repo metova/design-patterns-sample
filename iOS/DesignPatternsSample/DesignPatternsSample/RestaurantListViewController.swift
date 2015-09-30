@@ -8,14 +8,16 @@
 
 import UIKit
 
-class RestaurantListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RestaurantListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     
     // MARK: Properties
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var restaurants = [Restaurant]()
+    var filteredRestaurants = [Restaurant]()
     
     
     
@@ -26,14 +28,55 @@ class RestaurantListViewController: UIViewController, UITableViewDataSource, UIT
         super.viewDidLoad()
         
         setUpUI()
+        retrieveRestaurants()
     }
     
     
+    // Pattern Example
+    /*
+    
+    The iOS SDK includes a standard implementation of the observer pattern. It's a basic publish/subscribe system called NSNotificationCenter. 
+    
+    With NSNotificationCenter, objects can register as observers to be notified of specific events. Objects may optionally register as observers of specific events that are published by one particular object.
+    
+    In this case, our view controller is registering as an observer for the UIKeyboardWillChangeFrameNotification. iOS publishes a number of keyboard related events using NSNotificationCenter to allow for objects to observe the events if they choose to do so. In our case, we want to know when the keyboard is displayed or hidden in order to adjust the table view contents to ensure that they aren't hidden behind the keyboard when it is displayed.
+    
+    */
+    
+    /*
+    When the view appears, we register as an observer.
+    */
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
         
-        retrieveRestaurants()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillChangeFrame:"), name: UIKeyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    /*
+    When teh view disappears, we unregister since we no longer care about the event.
+    */
+    override func viewWillDisappear(animated: Bool) {
+        
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    /*
+    This is the method we've set up to be called whenever the UIKeyboardWillChangeFrameNotification event occurs. Here, we update the bottom content inset of the table view so that the contents can scroll out from under the keyboard.
+    */
+    func keyboardWillChangeFrame(notification: NSNotification) {
+        
+        if let userInfo = notification.userInfo as? [String: AnyObject] {
+            
+            let keyboardFrameEnd: CGRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+            
+            var inset = tableView.contentInset
+            inset.bottom = UIDevice.tc_screenHeight() - keyboardFrameEnd.origin.y
+            tableView.contentInset = inset
+            tableView.scrollIndicatorInsets = tableView.contentInset
+        }
     }
     
     
@@ -43,11 +86,35 @@ class RestaurantListViewController: UIViewController, UITableViewDataSource, UIT
     func setUpUI() {
         
         navigationItem.title = "Hot Chicken Restaurants"
-        
+
         tableView.tableFooterView = UIView()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
         tableView.registerNib(RestaurantCell.tc_nib(), forCellReuseIdentifier: RestaurantCell.tc_reuseIdentifier())
+        tableView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.Interactive
+        
+        var inset = tableView.contentInset
+        inset.top += CGRectGetHeight(searchBar.frame)
+        tableView.contentInset = inset
+        tableView.scrollIndicatorInsets = tableView.contentInset
+    }
+    
+    
+    
+    // MARK: Helper
+    
+    func updateFilteredRestaurantList() {
+        
+        if let searchFilter = searchBar.text where searchFilter.characters.count > 0 {
+            
+            filteredRestaurants = restaurants.filter { $0.name.localizedStandardContainsString(searchFilter) }
+        }
+        else {
+            
+            filteredRestaurants = restaurants
+        }
+        
+        tableView.reloadData()
     }
     
     
@@ -61,9 +128,42 @@ class RestaurantListViewController: UIViewController, UITableViewDataSource, UIT
         WebService.sharedInstance.retrieveRestaurants { (json) -> () in
             
             self.restaurants = ModelParser.parseRestaurantResponse(json)
-            self.tableView.reloadData()
+            self.updateFilteredRestaurantList()
             SVProgressHUD.dismiss()
         }
+    }
+    
+
+    
+    // MARK: UISearchBarDelegate
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        updateFilteredRestaurantList()
+    }
+    
+    
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+        updateFilteredRestaurantList()
+    }
+    
+    
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        
+        searchBar.text = nil
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.resignFirstResponder()
     }
     
     
