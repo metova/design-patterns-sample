@@ -70,3 +70,16 @@ Reference: [Flyweight Pattern](https://sourcemaking.com/design_patterns/flyweigh
 
 #### Examples ####
 [ViewHolder - Android](https://github.com/metova/design-patterns-sample/blob/master/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/ui/ViewHolder.java#L10)
+
+## Delegation ##
+Reference: [Delegation Pattern](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/Delegation.html)
+
+#### Intent ####
+>- Allow an object to act on behalf of, or in coordination with, another object.
+- Clients can customize behavior of another object while remaining fairly decoupled.
+
+#### Problem ####
+> You want to customize the behavior of an object when inheritance is either not feasible, or inheritance doesn't allow an object to maintain a separation of concerns.
+
+#### Examples ####
+[UITableView - iOS](https://github.com/metova/design-patterns-sample/blob/master/iOS/DesignPatternsSample/DesignPatternsSample/RestaurantListViewController.swift#L71)
