@@ -68,7 +68,7 @@ public class ListAdapter extends BaseAdapter {
         Context context = parent.getContext();
         ViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.restaurant_item, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.restaurant_item, parent);
             holder = new ViewHolder(convertView);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -98,4 +98,5 @@ public class ListAdapter extends BaseAdapter {
 
         return convertView;
     }
+
 }
