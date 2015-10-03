@@ -4,12 +4,6 @@ The goal of this repository is to demonstrate use cases for design patterns and 
 
 If you are a web or mobile developer you may not be aware that you use some of these patterns every day. This repository will demonstrate how to apply design patterns to the iOS, Android, and Rails frameworks and give you a deeper understanding of when and how to use these patterns. 
 
-#### Resources ####
-While this repository is still in progress here are links to the planning doc and the slides for the presention.
-
-- [Google Doc](https://docs.google.com/document/d/189NgasryPDxMfjgtemgyYicn0yXzqSqCw3IcZGuEy-g/edit)
-- [Google Slides](https://docs.google.com/presentation/d/123Td1gM7_Vcjh_iPAtU6W75_c3dRzvzoYmqzDlgkepY/edit?userstoinvite=mahyar.varasteh@metova.com&ts=5605654a&actionButton=1#slide=id.p)
-
 # Design Patterns #
 
 The following list is a compilation of design patterns that we have explanations and code examples for.
@@ -44,7 +38,10 @@ Reference: [Singleton Pattern](https://sourcemaking.com/design_patterns/singleto
 [RestaurantFactory](https://github.com/metova/design-patterns-sample/blob/feature/android/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/data/RestaurantFactory.java)
 
 ## Adapter ##
-Reference: [Adapter Pattern](https://sourcemaking.com/design_patterns/adapter)
+References: 
+
+- [Adapter Pattern](https://sourcemaking.com/design_patterns/adapter)
+- [ListAdapter Docs](http://developer.android.com/reference/android/widget/ListAdapter.html)
 
 #### Intent ####
 >- Convert the interface of a class into another interface clients expect. 
@@ -59,7 +56,10 @@ Impedance match an old component to a new system
 - [ListAdapter - Android](https://github.com/metova/design-patterns-sample/blob/master/Android/Sample-Android/designpatterns/src/main/java/com/metova/designpatterns/ui/ListAdapter.java)
 
 ## Flyweight ##
-Reference: [Flyweight Pattern](https://sourcemaking.com/design_patterns/flyweight)
+References: 
+
+- [Flyweight Pattern](https://sourcemaking.com/design_patterns/flyweight)
+- [ViewHolder Docs](http://developer.android.com/training/improving-layouts/smooth-scrolling.html#ViewHolder)
 
 #### Intent ####
 >- Use sharing to support large numbers of fine-grained objects efficiently.
