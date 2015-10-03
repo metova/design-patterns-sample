@@ -25,11 +25,11 @@ import android.widget.TextView;
  */
 public class ViewHolder {
 
-    public ImageView image;
-    public TextView name;
-    public TextView location;
-    public ImageView stars;
-    public ImageView type;
+    public final ImageView image;
+    public final TextView name;
+    public final TextView location;
+    public final ImageView stars;
+    public final ImageView type;
 
     public ViewHolder(View view) {
         image = (ImageView) view.findViewById(R.id.image);
