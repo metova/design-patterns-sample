@@ -37,11 +37,8 @@ public class ListAdapter extends BaseAdapter {
 
     private ArrayList<Restaurant> mRestaurantList;
 
-    private Context mContext;
-
-    public ListAdapter(ArrayList<Restaurant> restaurantList, Context context) {
+    public ListAdapter(ArrayList<Restaurant> restaurantList) {
         mRestaurantList = restaurantList;
-        mContext = context;
     }
 
     @Override
@@ -68,9 +65,10 @@ public class ListAdapter extends BaseAdapter {
         // create a new view, otherwise we know that getView() has already created the view and we
         // can use our Flyweight ViewHolder object that is cached for us in the tag.
         Restaurant restaurant = getItem(position);
+        Context context = parent.getContext();
         ViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.restaurant_item, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.restaurant_item, null);
             holder = new ViewHolder(convertView);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -82,14 +80,14 @@ public class ListAdapter extends BaseAdapter {
             holder.type.setImageResource(R.drawable.chicken);
         }
 
-        Ion.with(mContext)
+        Ion.with(context)
                 .load(restaurant.getImageUrl())
                 .withBitmap()
                 .placeholder(R.drawable.loading)
                 .error(R.drawable.error)
                 .intoImageView(holder.image);
 
-        Ion.with(mContext)
+        Ion.with(context)
                 .load(restaurant.getRatingUrl())
                 .withBitmap()
                 .centerInside()
@@ -100,6 +98,4 @@ public class ListAdapter extends BaseAdapter {
 
         return convertView;
     }
-
-
 }

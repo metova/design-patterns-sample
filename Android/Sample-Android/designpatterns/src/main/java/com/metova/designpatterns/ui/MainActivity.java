@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         DataManager.getInstance().initialize(this);
 
-        mListAdapter = new ListAdapter(DataManager.getInstance().getRestaurantList(), this);
+        mListAdapter = new ListAdapter(DataManager.getInstance().getRestaurantList());
         mListView.setAdapter(mListAdapter);
     }
 
